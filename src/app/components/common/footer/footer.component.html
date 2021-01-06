@@ -1,0 +1,265 @@
+<!-- Start Footer Area -->
+<footer class="footer-area bg-color pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="single-footer-widget single-bg">
+                    <a routerLink="/" class="logo">
+                        <img src="assets/img/logo.png" alt="Image">
+                    </a>
+                    <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua consec tetur adipiscing.</p>
+                    <ul class="social-icon">
+                        <li><a href="#" target="_blank"><i class="bx bxl-facebook"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="bx bxl-instagram"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="bx bxl-linkedin-square"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="bx bxl-twitter"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="single-footer-widget">
+                    <h3>Contact</h3>
+
+                    <ul class="address">
+                        <li>
+                            <span>Phone:</span>
+                            <a href="tel:+1-(514)-312-6677">+1 (514) 312-6677</a>
+                        </li>
+                        <li>
+                            <span>Email:</span>
+                            <a href="mailto:hello@revor.com">hello@revor.com</a>
+
+                        </li>
+                        <li class="location">
+                            <span>Address:</span>
+                            2364 Oakdale Avenue Clearwater, FL 34620, New York, USA
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="single-footer-widget">
+                    <h3>Services</h3>
+
+                    <ul class="import-link">
+                        <li><a routerLink="/">Home Insurance</a></li>
+                        <li><a routerLink="/">Life Insurance</a></li>
+                        <li><a routerLink="/">Business Insurance</a></li>
+                        <li><a routerLink="/">Travel Insurance</a></li>
+                        <li><a routerLink="/">Auto Insurance</a></li>
+                        <li><a routerLink="/">Property Insurance</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="single-footer-widget">
+                    <h3>Get in Touch</h3>
+                    <p>Sign up to get new exclusive offers from our latest news.</p>
+
+                    <!-- <form class="newsletter-form">
+                        <input type="email" class="form-control" placeholder="Enter email address" name="EMAIL" required autocomplete="off">
+                        <button class="default-btn" type="submit">Subscribe Now</button>
+                    </form>	 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer Area -->
+
+<!-- Start Copy Right Area -->
+<div class="copy-right-area bg-color">
+    <div class="container">
+        <p>Copyright @2020 <strong>Revor</strong>. Designed By <a href="https://envytheme.com/"
+                target="_blank">EnvyTheme</a></p>
+    </div>
+</div>
+<!-- End Copy Right Area -->
+
+<!-- Start Log In Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+
+            <div class="modal-body">
+                <div class="container">
+                    <div class="contact-form-action">
+                        <div class="account-title">
+                            <h2>Log In to Your Account</h2>
+                        </div>
+                        <!-- <form>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Email or Phone</label>
+                                        <input class="form-control" type="text" name="name">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input class="form-control" type="password" name="password">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="login-action">
+                                        <span class="log-rem">
+                                            <input id="remember" type="checkbox">
+                                            <label for="remember">Remember me!</label>
+                                        </span>
+                                        <span class="forgot-login">
+                                            <a routerLink="/recover-password">Forgot your password?</a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="default-btn" type="submit">Log In</button>
+                                </div>
+                                <div class="col-12">
+                                    <p>Have an account? <a routerLink="/register">Registration Now!</a></p>
+                                </div>
+                            </div>
+                        </form> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Log In Modal -->
+
+<!-- Start Register Modal -->
+<div class="modal fade" id="staticBackdrop-2" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+
+            <div class="modal-body">
+                <div class="container">
+                    <div class="contact-form-action">
+                        <div class="account-title">
+                            <h2>Register Your Account</h2>
+                        </div>
+                        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>First name</label>
+                                        <input class="form-control" type="text" name="name" formControlName="userName">
+                                        <span class="text-danger"
+                                        *ngIf="(registerFormControl.userName.touched || submitted) && registerFormControl.userName.errors?.required">
+                                        User Name name is required
+                                    </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>First name</label>
+                                        <input class="form-control" type="text" name="name" formControlName="firstName">
+                                        <span class="text-danger"
+                                        *ngIf="(registerFormControl.firstName.touched || submitted) && registerFormControl.firstName.errors?.required">
+                                        First name is required
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Last name</label>
+                                        <input class="form-control" type="text" name="name" formControlName="lastName">
+                                        <span class="text-danger"
+                                        *ngIf="(registerFormControl.lastName.touched || submitted) && registerFormControl.lastName.errors?.required">
+                                        Last name is required
+                                    </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Email address</label>
+                                        <input class="form-control" type="email" name="email" formControlName="email">
+                                        <span class="text-danger"
+                                            *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
+                                            Email is required
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input class="form-control" type="text" name="password"
+                                            formControlName="password">
+                                        <span class="text-danger"
+                                            *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors?.required">
+                                            Password is required
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Mobile no.</label>
+                                        <input class="form-control" type="text" name="Number" formControlName="phone">
+                                        <span class="text-danger"
+                                            *ngIf="(registerFormControl.phone.touched || submitted) && registerFormControl.phone.errors?.required">
+                                            Phone is required
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <input class="form-control" type="text" name="name" formControlName="address">
+                                        <span class="text-danger"
+                                            *ngIf="(registerFormControl.address.touched || submitted) && registerFormControl.address.errors?.required">
+                                            Address is required
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Gender</label>
+                                        <input class="form-control" type="text" name="name" formControlName="gender">
+                                        <span class="text-danger"
+                                            *ngIf="(registerFormControl.gender.touched || submitted) && registerFormControl.gender.errors?.required">
+                                            Gender is required
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Identity Card</label>
+                                        <input class="form-control" type="number" name="name"
+                                            formControlName="identity">
+                                        <span class="text-danger"
+                                            *ngIf="(registerFormControl.identity.touched || submitted) && registerFormControl.identity.errors?.required">
+                                            Identity is required
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <button class="default-btn register" type="submit">Register Now</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Register Modal -->
