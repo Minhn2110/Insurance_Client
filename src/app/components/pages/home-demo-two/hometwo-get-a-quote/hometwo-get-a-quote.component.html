@@ -1,112 +1,115 @@
 <!-- Start Get Quote Area -->
 <section class="get-quote-area get-quote-area-two">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6 col-md-12 p-0">
+            <!-- <div class="col-lg-6 col-md-12 p-0">
                 <div class="get-quote-img jarallax" data-jarallax='{"speed": 0.3}'>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="col-lg-6 col-md-12 p-0">
+            <div class="col-lg-12 col-md-12 p-0">
                 <div class="tab get-quote-tab">
                     <div class="section-title">
-                        <span>Get Quote</span>
-                        <h2>Get Insurance Quote</h2>
+                        <span>Prudential</span>
+                        <h2>Insurance Purchase </h2>
                     </div>
 
                     <ul class="tabs">
-                        <li>Life Insurance</li>
-                        <li>Home Insurance</li>
                         <li>Auto Insurance</li>
-                        <li>Travel Insurance</li>
                     </ul>
 
                     <div class="tab_content">
                         <div class="tabs_item">
-                            <form class="get-quote-form">
-                                <div class="we-area-title">
+                            <form class="get-quote-form" [formGroup]="carInsuranceForm" (ngSubmit)="onSubmit()">
+                                <!-- <div class="we-area-title">
                                     <h3>Life Insurance Quote</h3>
-                                </div>
+                                </div> -->
         
                                 <div class="row">
-                                    <div class="col-lg-12 col-sm-12">
-                                        <div class="all-skill-bar">
-                                            <div class="skill-bar" data-percentage="25%">
-                                                <h4 class="progress-title-holder">
-                                                    <span class="progress-title">Leave of Protection:</span>
-                                                    <span class="usd">$180.00</span>
-                                                    <span class="progress-number-wrapper">
-                                                        <span class="progress-number-mark">
-                                                            <span class="percent"></span>
-                                                            <span class="down-arrow"></span>
-                                                        </span>
-                                                    </span>
-                                                </h4>
-                                                <div class="progress-content-outter">
-                                                    <div class="progress-content"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
             
                                     <div class="col-lg-12 col-sm-12">
                                         <span class="from-title">Personal Information:</span>
                                     </div>
+
+                                    <div class="col-lg-6 col-sm-6" *ngFor="let item of carInsurancePersonalInputs">
+                                        <div class="form-group">
+                                            <input type="{{item.text}}" class="form-control" placeholder="{{item.placeholder}}" formControlName="{{item.formControlName}}">
+                                            <span class="text-danger"
+                                            *ngIf="(carInsuranceFormControl[item.formControlName].touched || submitted) && carInsuranceFormControl[item.formControlName].errors?.required">
+                                            {{item.placeholder}} is required
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-sm-6">
+                                        <div class="form-group">
+                                            <select class="form-control" formControlName="aims">
+                                                <option value="">Please Select Aims</option>
+                                                <option value="">Business</option>
+                                                <option value="">None Business</option>
+                                            </select>
+                                            <span class="text-danger"
+                                            *ngIf="(carInsuranceFormControl.aims.touched || submitted) && carInsuranceFormControl.aims.errors?.required">
+                                            Please select Aims
+                                            </span>
+                                        </div>
+                                    </div>
+
             
                                     <div class="col-lg-6 col-sm-6">
                                         <div class="form-group">
-                                            <select>
-                                                <option value="1">Employment Status</option>
-                                                <option value="2">Services Man</option>
-                                                <option value="3">Management</option>
-                                                <option value="4">Receiver</option>
-                                                <option value="5">Cline</option>
-                                            </select>	
+                                            <select class="form-control" (change)="onChangeCarBrand($event)" formControlName="carBrand">
+                                                <option value="">Please Select Car Brand</option>
+                                                <option value="{{item}}" *ngFor="let item of carBrand">{{item}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                            *ngIf="(carInsuranceFormControl.carBrand.touched || submitted) && carInsuranceFormControl.carBrand.errors?.required">
+                                            Please select Car brand
+                                            </span>
                                         </div>
                                     </div>
             
                                     <div class="col-lg-6 col-sm-6">
                                         <div class="form-group">
-                                            <select>
-                                                <option value="1">Your Age</option>
-                                                <option value="2">29</option>
-                                                <option value="3">18</option>
-                                                <option value="4">22</option>
-                                                <option value="5">30</option>
-                                            </select>	
+                                            <select class="form-control" formControlName="carMaker">
+                                                <option value="">Please Select Car Maker</option>
+                                                <option value="{{item}}" *ngFor="let item of carMaker">{{item}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                            *ngIf="(carInsuranceFormControl.carMaker.touched || submitted) && carInsuranceFormControl.carMaker.errors?.required">
+                                            Please select Car Maker
+                                            </span>
                                         </div>
                                     </div>
+
+
         
                                     <div class="col-lg-12 col-sm-12">
                                         <span class="from-title">Contact Details:</span>
                                     </div>
-            
-                                    <div class="col-lg-6 col-sm-6">
+
+                                    <div class="col-lg-6 col-sm-6" *ngFor="let item of carInsuranceContactInputs">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="First-Name-1" placeholder="Name">
+                                            <input type="{{item.text}}" class="form-control" placeholder="{{item.placeholder}}" formControlName="{{item.formControlName}}">
+                                            <span class="text-danger"
+                                            *ngIf="(carInsuranceFormControl[item.formControlName].touched || submitted) && carInsuranceFormControl[item.formControlName].errors?.required">
+                                            {{item.placeholder}} is required
+                                            </span>
                                         </div>
                                     </div>
             
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" id="Email-1" placeholder="Email">
-                                        </div>
-                                    </div>
             
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="Number-1" placeholder="Phone Number">
-                                        </div>
-                                    </div>
             
-                                    <div class="col-lg-6 col-sm-6">
-                                        <button type="submit" class="default-btn">Get a Quote</button>
+                                    <div class="col-lg-12 col-sm-6">
+                                        <button type="submit" class="default-btn">Register</button>
+                                        <div class="paypal_section col-xl-12" #paypal></div>
+
                                     </div>
                                 </div>
                             </form>
                         </div>
                         
-                        <div class="tabs_item">
+                        <!-- <div class="tabs_item">
                             <form class="get-quote-form">
                                 <div class="we-area-title">
                                     <h3>Home Insurance Quote</h3>
@@ -356,7 +359,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

@@ -68,7 +68,8 @@ import { RegisterPageComponent } from './components/pages/authentication/registe
 import { ToastrModule } from 'ngx-toastr';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
-
+import {PurchasePageComponent} from './components/pages/purchase-page/purchase-page.component';
+import {PaymentPageComponent} from './components/pages/payment-page/payment-page.component';
 
 @NgModule({
     declarations: [
@@ -129,6 +130,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
         // New
         LoginPageComponent,
         RegisterPageComponent,
+        PurchasePageComponent,
+        PaymentPageComponent
     ],
     imports: [
         BrowserModule,

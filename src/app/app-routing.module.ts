@@ -28,6 +28,8 @@ import { TestimonialsPageComponent } from './components/pages/testimonials-page/
 // Authentication
 import { LoginPageComponent } from './components/pages/authentication/login-page/login-page.component';
 import { RegisterPageComponent } from './components/pages/authentication/register-page/register-page.component';
+import { PurchasePageComponent } from './components/pages/purchase-page/purchase-page.component';
+import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
 
 
 const routes: Routes = [
@@ -57,6 +59,9 @@ const routes: Routes = [
     // Authentication
     {path: 'register', component: RegisterPageComponent},
     {path: 'login', component: LoginPageComponent},
+    {path: 'purchase', component: PurchasePageComponent},
+    {path: 'payment', component: PaymentPageComponent},
+
     // Here add new pages component
 
     {path: '**', component: NotFoundComponent} // This line will remain down from the whole pages component list
