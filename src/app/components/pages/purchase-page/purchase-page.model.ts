@@ -7,8 +7,8 @@ carBrand: String;
 carMaker: String;
 email: String;
 phoneNumber: String;
-address: string;
-note: string;
+address: String;
+note: String;
 price: Number;
 }
 

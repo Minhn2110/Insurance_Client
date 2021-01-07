@@ -1,7 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { CarList } from '../../../model/car-insurance';
+
+import { login } from '../../../store/store.action';
+import { PurchasePageModel } from '../../purchase-page/purchase-page.model';
 
 declare var paypal;
 
@@ -26,7 +30,8 @@ export class HometwoGetAQuoteComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private store: Store
 
 
   ) { }
@@ -125,24 +130,28 @@ export class HometwoGetAQuoteComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.carInsuranceForm.valid) {
-      // const body = {
-      //   email: this.registerForm.controls.email.value,
-      //   userName: this.registerForm.controls.userName.value,
-      //   password: this.registerForm.controls.password.value,
-      //   surname: this.registerForm.controls.lastName.value,
-      //   givenName: this.registerForm.controls.firstName.value,
-      //   address: this.registerForm.controls.address.value,
-      //   phoneNumber: this.registerForm.controls.phone.value,
-      //   idNumber: this.registerForm.controls.identity.value,
-      //   gender: this.registerForm.controls.gender.value,
-      // }
+      const body: PurchasePageModel = {
+        name: this.carInsuranceForm.controls.name.value,
+        numberPlate: this.carInsuranceForm.controls.plate.value,
+        numberofSeat: this.carInsuranceForm.controls.numberOfSeat.value,
+        aims: this.carInsuranceForm.controls.aims.value,
+        carBrand: this.carInsuranceForm.controls.carBrand.value,
+        carMaker: this.carInsuranceForm.controls.carMaker.value,
+        email: this.carInsuranceForm.controls.email.value,
+        phoneNumber: this.carInsuranceForm.controls.phoneNumber.value,
+        address: this.carInsuranceForm.controls.address.value,
+        note: this.carInsuranceForm.controls.note.value,
+        price: 10000,
+
+      }
       // console.log('body', body);
       // this.appService.getConfig(body).subscribe((res) => {
         
       // });
+      this.store.dispatch(login({purchaseForm: body}));
+      this.router.navigate(['/payment']);
     }
 
-    // this.router.navigate(['/payment']);
   }
 
 }

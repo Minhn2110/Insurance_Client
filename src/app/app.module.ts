@@ -71,6 +71,11 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import {PurchasePageComponent} from './components/pages/purchase-page/purchase-page.component';
 import {PaymentPageComponent} from './components/pages/payment-page/payment-page.component';
 
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { counterReducer } from './components/store/store.reducer';
+
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -144,7 +149,12 @@ import {PaymentPageComponent} from './components/pages/payment-page/payment-page
         HttpClientModule,
         BrowserAnimationsModule, // required animations module
         ToastrModule.forRoot(), // ToastrModule added
-        SweetAlert2Module.forRoot()
+        SweetAlert2Module.forRoot(),
+        StoreModule.forRoot({ count: counterReducer }),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25, // Retains last 25 states
+        }),
+        // StoreModule.forRoot();
     ],
     providers: [],
     bootstrap: [AppComponent]

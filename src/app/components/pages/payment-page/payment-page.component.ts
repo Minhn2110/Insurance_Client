@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import {selectUser, selectTotal} from '../../store/store.selector';
 
 @Component({
   selector: 'app-payment-page',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private store: Store
+  ) { }
 
   ngOnInit() {
+    this.store.select(selectTotal).subscribe(data => console.log('data', data));
   }
 
 }

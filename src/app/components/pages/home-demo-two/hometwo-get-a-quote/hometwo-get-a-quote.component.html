@@ -45,8 +45,8 @@
                                         <div class="form-group">
                                             <select class="form-control" formControlName="aims">
                                                 <option value="">Please Select Aims</option>
-                                                <option value="">Business</option>
-                                                <option value="">None Business</option>
+                                                <option value="Business">Business</option>
+                                                <option value="None Business">None Business</option>
                                             </select>
                                             <span class="text-danger"
                                             *ngIf="(carInsuranceFormControl.aims.touched || submitted) && carInsuranceFormControl.aims.errors?.required">
