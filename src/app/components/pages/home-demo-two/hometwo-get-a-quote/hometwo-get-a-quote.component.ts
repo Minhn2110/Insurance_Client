@@ -7,7 +7,6 @@ import { CarList } from '../../../model/car-insurance';
 import { login } from '../../../store/store.action';
 import { PurchasePageModel } from '../../purchase-page/purchase-page.model';
 
-declare var paypal;
 
 @Component({
   selector: 'app-hometwo-get-a-quote',
@@ -15,7 +14,6 @@ declare var paypal;
   styleUrls: ['./hometwo-get-a-quote.component.scss']
 })
 export class HometwoGetAQuoteComponent implements OnInit {
-  @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
   
 // use ng template in html
 
@@ -39,14 +37,14 @@ export class HometwoGetAQuoteComponent implements OnInit {
   carInsurancePersonalInputs: Array<any> = [
     { type: 'text', formControlName: 'name', placeholder: 'Name', error: 'Insurance Name', hint: 'Insurance Name' },
     { type: 'text', formControlName: 'plate', placeholder: 'Vehicle registration plate', error: 'Insurance Code', hint: 'Insurance Code' },
-    { type: 'text', formControlName: 'numberOfSeat', placeholder: 'Number of Seat', error: 'Insurance Code', hint: 'Insurance Code' },
+    // { type: 'text', formControlName: 'numberOfSeat', placeholder: 'Number of Seat', error: 'Insurance Code', hint: 'Insurance Code' },
   ]
 
   carInsuranceContactInputs: Array<any> = [
     { type: 'text', formControlName: 'email', placeholder: 'Email', error: 'Insurance Name', hint: 'Insurance Name' },
     { type: 'text', formControlName: 'phoneNumber', placeholder: 'Phone Number', error: 'Insurance Code', hint: 'Insurance Code' },
     { type: 'address', formControlName: 'address', placeholder: 'Adress', error: 'Insurance Name', hint: 'Insurance Name' },
-    { type: 'note', formControlName: 'note', placeholder: 'Note', error: 'Insurance Name', hint: 'Insurance Name' },
+    // { type: 'note', formControlName: 'note', placeholder: 'Note', error: 'Insurance Name', hint: 'Insurance Name' },
   ]
 
   carInsurancePersonalSelect: Array<any> = [
@@ -71,14 +69,14 @@ export class HometwoGetAQuoteComponent implements OnInit {
     this.carInsuranceForm = this.fb.group({
       name: ['', [Validators.required]], 
       plate: ['', [Validators.required]],
-      numberOfSeat: ['', [Validators.required]],
+      // numberOfSeat: ['', [Validators.required]],
       carBrand: ['', [Validators.required]],
       carMaker: ['', [Validators.required]],
-      aims: ['', [Validators.required]],
+      // aims: ['', [Validators.required]],
       email: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required]],
       address: ['', [Validators.required]],
-      note: ['', [Validators.required]],
+      // note: ['', [Validators.required]],
     })
   }
 
@@ -98,34 +96,7 @@ export class HometwoGetAQuoteComponent implements OnInit {
     // alert('a');
   }
 
-  integratePaypal(): void {
-    paypal
-      .Buttons({
-        createOrder: (data, actions) => {
-          return actions.order.create({
-            purchase_units: [
-              {
-                description: 'SMS Online Services Payment',
-                amount: {
-                  currency_code: 'USD',
-                  // value: this.total.toFixed(2)
-                  value: 777.77
-                }
-              }
-            ]
-          });
-        },
-        onApprove: async (data, actions) => {
-          const order = await actions.order.capture();
-          let length = 0;
-          console.log('paypal', order);
-        },
-        onError: err => {
-          console.log(err);
-        }
-      })
-      .render(this.paypalElement.nativeElement);
-  }
+
 
   onSubmit() {
     this.submitted = true;
