@@ -101,17 +101,17 @@ export class HometwoGetAQuoteComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.carInsuranceForm.valid) {
-      const body: PurchasePageModel = {
+      const body: any = {
         name: this.carInsuranceForm.controls.name.value,
         numberPlate: this.carInsuranceForm.controls.plate.value,
-        numberofSeat: this.carInsuranceForm.controls.numberOfSeat.value,
-        aims: this.carInsuranceForm.controls.aims.value,
+        // numberofSeat: this.carInsuranceForm.controls.numberOfSeat.value,
+        // aims: this.carInsuranceForm.controls.aims.value,
         carBrand: this.carInsuranceForm.controls.carBrand.value,
         carMaker: this.carInsuranceForm.controls.carMaker.value,
         email: this.carInsuranceForm.controls.email.value,
         phoneNumber: this.carInsuranceForm.controls.phoneNumber.value,
         address: this.carInsuranceForm.controls.address.value,
-        note: this.carInsuranceForm.controls.note.value,
+        // note: this.carInsuranceForm.controls.note.value,
         price: 10000,
 
       }

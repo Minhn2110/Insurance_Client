@@ -12,20 +12,14 @@ import { HomeDemoOneComponent } from './components/pages/home-demo-one/home-demo
 import { HomeDemoTwoComponent } from './components/pages/home-demo-two/home-demo-two.component';
 import { ContactPageComponent } from './components/pages/contact-page/contact-page.component';
 import { BlogGridPageComponent } from './components/pages/blog-grid-page/blog-grid-page.component';
-import { BlogRightSidebarPageComponent } from './components/pages/blog-right-sidebar-page/blog-right-sidebar-page.component';
 import { BlogDetailsPageComponent } from './components/pages/blog-details-page/blog-details-page.component';
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
-import { BusinessInsurancePageComponent } from './components/pages/business-insurance-page/business-insurance-page.component';
-import { HealthInsurancePageComponent } from './components/pages/health-insurance-page/health-insurance-page.component';
-import { LifeInsurancePageComponent } from './components/pages/life-insurance-page/life-insurance-page.component';
+
 import { CarInsurancePageComponent } from './components/pages/car-insurance-page/car-insurance-page.component';
 import { ComingSoonPageComponent } from './components/pages/coming-soon-page/coming-soon-page.component';
-import { TermsConditionsPageComponent } from './components/pages/terms-conditions-page/terms-conditions-page.component';
-import { PrivacyPolicyPageComponent } from './components/pages/privacy-policy-page/privacy-policy-page.component';
 import { FaqPageComponent } from './components/pages/faq-page/faq-page.component';
 import { ClaimsPageComponent } from './components/pages/claims-page/claims-page.component';
 import { PricingPageComponent } from './components/pages/pricing-page/pricing-page.component';
-import { TeamPageComponent } from './components/pages/team-page/team-page.component';
 import { ServicesPageComponent } from './components/pages/services-page/services-page.component';
 import { PartnerComponent } from './components/common/partner/partner.component';
 import { TeamComponent } from './components/common/team/team.component';
@@ -57,7 +51,6 @@ import { HomethreeWhyChooseUsComponent } from './components/pages/home-demo-thre
 import { HomethreeGetAQuoteComponent } from './components/pages/home-demo-three/homethree-get-a-quote/homethree-get-a-quote.component';
 import { HomethreeFaqComponent } from './components/pages/home-demo-three/homethree-faq/homethree-faq.component';
 import { HomethreeFeedbackComponent } from './components/pages/home-demo-three/homethree-feedback/homethree-feedback.component';
-import { TestimonialsPageComponent } from './components/pages/testimonials-page/testimonials-page.component';
 import { AboutUsPageComponent } from './components/pages/about-us-page/about-us-page.component';
 
 // Module
@@ -85,20 +78,13 @@ import { counterReducer } from './components/store/store.reducer';
         HomeDemoTwoComponent,
         ContactPageComponent,
         BlogGridPageComponent,
-        BlogRightSidebarPageComponent,
         BlogDetailsPageComponent,
         NotFoundComponent,
-        BusinessInsurancePageComponent,
-        HealthInsurancePageComponent,
-        LifeInsurancePageComponent,
         CarInsurancePageComponent,
         ComingSoonPageComponent,
-        TermsConditionsPageComponent,
-        PrivacyPolicyPageComponent,
         FaqPageComponent,
         ClaimsPageComponent,
         PricingPageComponent,
-        TeamPageComponent,
         ServicesPageComponent,
         PartnerComponent,
         TeamComponent,
@@ -130,7 +116,6 @@ import { counterReducer } from './components/store/store.reducer';
         HomethreeGetAQuoteComponent,
         HomethreeFaqComponent,
         HomethreeFeedbackComponent,
-        TestimonialsPageComponent,
         AboutUsPageComponent,
         // New
         LoginPageComponent,
