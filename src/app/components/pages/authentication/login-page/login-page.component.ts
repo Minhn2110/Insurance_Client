@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { AppService } from 'src/app/app.service';
+
+import {LOAD_USER_INFO, accountAction} from '../../../store/store.action';
 
 @Component({
   selector: 'app-login-page',
@@ -15,7 +18,8 @@ export class LoginPageComponent implements OnInit {
     private fb: FormBuilder,
     private appService: AppService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
@@ -43,11 +47,14 @@ export class LoginPageComponent implements OnInit {
       console.log('body', body);
 
 
-      this.appService.login(body).subscribe((res) => {
+      this.appService.login(body).subscribe((res: any) => {
         if (res) {
           console.log('res', res);
-          this.appService.successMsg(res, 'Success');
-          this.router.navigate(['/index-3']);
+          localStorage.setItem('token', res.accessToken);
+          this.store.dispatch(LOAD_USER_INFO({userInfo: res.infor}));
+          this.store.dispatch(accountAction({accountStatus: true}));
+          this.appService.successMsg('Log in success', 'Success');
+          this.router.navigate(['/']);
         }
       }, error => {
         console.log(error);

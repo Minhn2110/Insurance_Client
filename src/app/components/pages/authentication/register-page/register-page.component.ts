@@ -98,10 +98,11 @@ export class RegisterPageComponent implements OnInit {
         phoneNumber: this.registerForm.controls.phone.value,
         code: result.value
       }
-      this.appService.sendOtp(body).subscribe((res) => {
+      this.appService.sendOtp(body).subscribe((res: any) => {
         if(res) {
+          console.log('res', res);
           Swal.fire('Register Success', '', 'success');
-          this.router.navigate(['/index-3']);
+          this.router.navigate(['/']);
         }
       })
     }

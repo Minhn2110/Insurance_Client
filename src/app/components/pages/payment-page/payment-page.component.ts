@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { AppService } from 'src/app/app.service';
 
 import {selectUser, selectTotal} from '../../store/store.selector';
 
@@ -13,15 +15,22 @@ declare var paypal;
 export class PaymentPageComponent implements OnInit {
 
   constructor(
-    private store: Store
+    private store: Store,
+    private service: AppService,
+    private router: Router,
+
   ) { }
 
-  data: any;
+  orderInfo: any;
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
 
 
   ngOnInit() {
-    this.store.select(selectTotal).subscribe(data => console.log('data', data));
+    this.store.select(selectTotal).subscribe(data => {
+      this.orderInfo = data;
+      console.log('orderInfo', this.orderInfo);
+      this.createOrder(this.orderInfo);
+    });
     this.integratePaypal();
   }
 
@@ -35,7 +44,7 @@ export class PaymentPageComponent implements OnInit {
                 description: 'Revor Insurance',
                 amount: {
                   currency_code: 'USD',
-                  value1: this.data, 
+                  value1: this.orderInfo, 
                   value: 1
                 }
               }
@@ -52,6 +61,16 @@ export class PaymentPageComponent implements OnInit {
         }
       })
       .render(this.paypalElement.nativeElement);
+  }
+
+  createOrder(data) {
+    this.service.createOrder(data).subscribe((res: any) => {
+      console.log('res', res);
+      if(res && res.status) {
+        this.service.successMsg('Purchase success', 'Success');
+        this.router.navigate(['/']);
+      }
+    })
   }
 
 }

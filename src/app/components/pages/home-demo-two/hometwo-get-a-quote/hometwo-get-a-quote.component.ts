@@ -6,6 +6,8 @@ import { CarList } from '../../../model/car-insurance';
 
 import { login } from '../../../store/store.action';
 import { PurchasePageModel } from '../../purchase-page/purchase-page.model';
+import { selectUserInfo } from '../../../store/store.selector';
+import { AppService } from 'src/app/app.service';
 
 
 @Component({
@@ -23,13 +25,16 @@ export class HometwoGetAQuoteComponent implements OnInit {
   carAims: Array<String> = ['Business', 'None Business'];
   carInsuranceForm: FormGroup;
   submitted = false;
+  userInfo: any;
 
+  product: any;
 
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private store: Store
+    private store: Store,
+    private service: AppService
 
 
   ) { }
@@ -59,10 +64,20 @@ export class HometwoGetAQuoteComponent implements OnInit {
     this.carBrand = CarList.map(item => item.brand);
     console.log(this.carBrand);
 
-    // setTimeout(() => {
-    //   this.integratePaypal();
+    this.getProduct();
+    this.getUserInfo();
+  }
 
-    // }, 1000);
+  getUserInfo(): void {
+    this.store.select(selectUserInfo).subscribe((data: any) => {
+      this.userInfo = data;
+    })
+  }
+  getProduct(): void {
+    this.service.getProduct('BHOT').subscribe((data) => {
+      console.log('data', data);
+      this.product = data;
+    });
   }
 
   initCarInsuranceForm() {
@@ -113,6 +128,10 @@ export class HometwoGetAQuoteComponent implements OnInit {
         address: this.carInsuranceForm.controls.address.value,
         // note: this.carInsuranceForm.controls.note.value,
         price: 10000,
+        processName: "BuyNew",
+        customerId: this.userInfo.id,
+        productId: this.product.data.id ,
+        partnerId: 1
 
       }
       // console.log('body', body);
