@@ -29,7 +29,6 @@ export class PaymentPageComponent implements OnInit {
     this.store.select(selectTotal).subscribe(data => {
       this.orderInfo = data;
       console.log('orderInfo', this.orderInfo);
-      this.createOrder(this.orderInfo);
     });
     this.integratePaypal();
   }
@@ -55,6 +54,7 @@ export class PaymentPageComponent implements OnInit {
           const order = await actions.order.capture();
           let length = 0;
           console.log('paypal', order);
+          this.createOrder(this.orderInfo);
         },
         onError: err => {
           console.log(err);

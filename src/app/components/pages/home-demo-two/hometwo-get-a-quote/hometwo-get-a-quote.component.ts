@@ -129,7 +129,7 @@ export class HometwoGetAQuoteComponent implements OnInit {
         // note: this.carInsuranceForm.controls.note.value,
         price: 10000,
         processName: "BuyNew",
-        customerId: this.userInfo.id,
+        customerId: this.userInfo.customerId,
         productId: this.product.data.id ,
         partnerId: 1
 
