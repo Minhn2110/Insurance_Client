@@ -67,6 +67,7 @@ import {PaymentPageComponent} from './components/pages/payment-page/payment-page
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { counterReducer } from './components/store/store.reducer';
+import { ClaimFormComponent } from './components/pages/claim-form/claim-form.component';
 
 
 @NgModule({
@@ -121,7 +122,8 @@ import { counterReducer } from './components/store/store.reducer';
         LoginPageComponent,
         RegisterPageComponent,
         PurchasePageComponent,
-        PaymentPageComponent
+        PaymentPageComponent,
+        ClaimFormComponent
     ],
     imports: [
         BrowserModule,

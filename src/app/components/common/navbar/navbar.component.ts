@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit {
     {name: 'Home', router: '/'},
     {name: 'Insurance', router: '/purchase'},
     {name: 'Claim', router: '/claims'},
+    {name: 'Claim Form', router: '/claim-form'},
     {name: 'FAQ', router: '/faq'}
   ]
  
