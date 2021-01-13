@@ -15,10 +15,27 @@ export class ClaimFormComponent implements OnInit {
     { type: 'text', formControlName: 'contractId', placeholder: 'Contract Id', error: 'Contract Id', hint: 'Contract Id' },
     { type: 'text', formControlName: 'customerName', placeholder: 'Customer Name', error: 'Customer Name', hint: 'Customer Name' },
     { type: 'text', formControlName: 'carPlate', placeholder: 'Car Plate', error: 'Car Plate', hint: 'Car Plate' },
-
-
-
   ];
+
+  coverageCheckbox: Array<any> = [
+    { formControlName: 'rePaint', label: 'Re Paint' },
+    { formControlName: 'bringingFee', label: 'Bringing Fee' },
+    { formControlName: 'componentFee', label: 'Component Fee' },
+  ]
+
+  coverageAmount: Array<any> = [
+    { formControlName: 'rePaintAmount', label: 'Re Paint Amount', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.' },
+    { formControlName: 'bringingFeeAmount', label: 'Bringing Fee Amount', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'  },
+    { formControlName: 'componentFeeAmount', label: 'Component Fee Amount', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'  },
+  ]
+
+  garageInformation: Array<any> = [
+    { type: 'text', formControlName: 'employeeName', placeholder: 'Employee Name', error: 'Employee Name', hint: 'Employee Name' },
+    { type: 'text', formControlName: 'employeePhoneNumber', placeholder: 'Employee Phone Number', error: 'Employee Phone Number', hint: 'Employee Phone Number' },
+
+  ]
+
+
 
   constructor(
     private fb: FormBuilder,
@@ -27,6 +44,7 @@ export class ClaimFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.createClaimForm();
   }
 
 
@@ -36,8 +54,15 @@ export class ClaimFormComponent implements OnInit {
       contractId: ['', [Validators.required]], 
       customerName: ['', [Validators.required]], 
       carPlate: ['', [Validators.required]], 
+      rePaint: ['', [Validators.required]], 
+      bringingFee: ['', [Validators.required]], 
+      componentFee: ['', [Validators.required]], 
+
     })
 
+  }
+  onChangeCoverageCbx(event) {
+    console.log(event);
   }
 
 }
