@@ -32,7 +32,6 @@ export class ClaimFormComponent implements OnInit {
   garageInformation: Array<any> = [
     { type: 'text', formControlName: 'employeeName', placeholder: 'Employee Name', error: 'Employee Name', hint: 'Employee Name' },
     { type: 'text', formControlName: 'employeePhoneNumber', placeholder: 'Employee Phone Number', error: 'Employee Phone Number', hint: 'Employee Phone Number' },
-
   ]
 
 
@@ -57,12 +56,19 @@ export class ClaimFormComponent implements OnInit {
       rePaint: ['', [Validators.required]], 
       bringingFee: ['', [Validators.required]], 
       componentFee: ['', [Validators.required]], 
+      employeeName: ['', [Validators.required]], 
+      employeePhoneNumber: ['', [Validators.required]], 
 
     })
 
   }
   onChangeCoverageCbx(event) {
     console.log(event);
+  }
+
+  onChangeDetailAmount(event) {
+    console.log(event.target);
+
   }
 
 }

@@ -5171,3 +5171,12 @@ OTHERS STYLE AREA
 		}
 	}
 }
+
+input:disabled {
+	background-color: lightgray !important;
+}
+
+input::placeholder, textarea::placeholder {
+	opacity: 0.5 !important; /* Firefox */
+	font-style: italic;
+  }

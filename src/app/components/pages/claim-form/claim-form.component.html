@@ -2,10 +2,10 @@
 <div class="page-title-area bg-17">
     <div class="container">
         <div class="page-title-content">
-            <h2>Claim Form</h2>
+            <h2>Automobile Physical Damage Insurance</h2>
             <ul>
                 <li><a routerLink="/">Home</a></li>
-                <li class="active">Claim Form</li>
+                <li class="active">Automobile Physical Damage Insurance</li>
             </ul>
         </div>
     </div>
@@ -36,7 +36,6 @@
                                 </div>
 
 
-
                             </div>
 
                             <div class="row coverage">
@@ -65,7 +64,7 @@
                                     <div class="col-lg-6 col-sm-6">
                                         <div class="form-group">
                                             <input type="number" id="{{item.formControlName}}" class="form-control"
-                                                placeholder="{{item.label}}">
+                                                placeholder="{{item.label}}" (change)="onChangeDetailAmount($event)">
                                         </div>
                                     </div>
     
