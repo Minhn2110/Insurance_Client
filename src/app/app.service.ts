@@ -22,6 +22,10 @@ export class AppService {
     const url = `${environment}/auth/u/register`;
     return this.http.post(url, body);
   }
+  registerPartner(body) {
+    const url = `${environment}/auth/partner/register`;
+    return this.http.post(url, body);
+  }
   login(body) {
     const url = `${environment}/auth/authenticate`;
     return this.http.post(url, body);
@@ -57,4 +61,16 @@ export class AppService {
   }
 
 
+  // claim
+  createClaim(body) {
+    const userToken = localStorage.getItem('token');
+    console.log('userToken', userToken);
+    const httpOptions = {
+        headers: new HttpHeaders({
+            Authorization: 'Bearer ' + userToken
+        })
+    };
+    const url = `${environment}/u/claims`;
+    return this.http.post(url, body, httpOptions);
+  }
 }

@@ -21,7 +21,7 @@
             <div class="col-lg-9 col-md-12">
                 <div class="contact-wrap">
                     <div class="contact-form">
-                        <form id="contactForm" [formGroup]="claimForm">
+                        <form id="contactForm" [formGroup]="claimForm" (ngSubmit)="onCreateClaimForm()">
                             <div class="row">
                                 <div class="col-12">
                                     <h3>Personal Information</h3>
@@ -45,10 +45,10 @@
                                 </div>
 
                                 <ng-container *ngFor="let item of coverageCheckbox">
-                                    <div class="col-lg-1 col-sm-6">
-                                        <input type="checkbox" class="form-control" (change)="onChangeCoverageCbx($event)" id={{item.formControlName}}>
+                                    <div class="col-lg-1 col-sm-6 coverage-cbx">
+                                        <input type="checkbox" class="form-control" (change)="onChangeCoverageCbx($event)" id={{item.formControlName}} formControlName="{{item.formControlName}}">
                                     </div>
-                                    <div class="col-lg-2 col-sm-6">
+                                    <div class="col-lg-2 col-sm-6 coverage-cbx">
                                         <label>{{item.label}}</label>
                                     </div>
                                 </ng-container>
@@ -64,14 +64,13 @@
                                     <div class="col-lg-6 col-sm-6">
                                         <div class="form-group">
                                             <input type="number" id="{{item.formControlName}}" class="form-control"
-                                                placeholder="{{item.label}}" (change)="onChangeDetailAmount($event)">
+                                                placeholder="{{item.label}}" formControlName="{{item.formControlName}}" (change)="onChangeDetailAmount($event)">
                                         </div>
                                     </div>
     
                                     
                                     <div class="col-lg-6 col-sm-6">
                                         <p>Note: {{item.description}}</p>
-                                        <p>{{item.formControlName}}</p>
                                     </div>
 
                                 </ng-container>
@@ -151,25 +150,6 @@
                         <div class="col-4">10000</div>
                     </div>
 
-
-
-
-                    <!-- <ul class="address">
-                        <li class="location">
-                            <span>Sratched Fee:</span>
-                            <span>100$</span>
-                        </li>
-                        <li>
-                            <span>Email</span>
-                            <a href="mailto:hello@revor.com">hello@revor.com</a>
-                            <a href="mailto:support@revor.com">support@revor.com</a>
-                        </li>
-                        <li>
-                            <span>Phone</span>
-                            <a href="tel:+1-(514)-312-6677">+1 (514) 312-6677</a>
-                            <a href="tel:+1(514)-312-6688">+1 (514) 312-6688</a>
-                        </li>
-                    </ul> -->
 
                     <div class="row">
                         <div class="col-8 claim-form-totalFee--title">Final: </div>
