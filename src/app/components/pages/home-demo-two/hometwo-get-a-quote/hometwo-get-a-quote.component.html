@@ -26,7 +26,27 @@
                                 </div> -->
         
                                 <div class="row">
-            
+
+                                    <div class="col-lg-4 col-sm-12">
+                                        <span class="from-title">Estimation:</span>
+                                    </div>
+                                    <div class="col-lg-8 col-sm-12 flex-end">
+                                        <span class="from-title">$ {{carEstimation}}</span>
+                                    </div>
+
+                                    <br>
+                                    <br>
+
+                                    <div class="col-lg-4 col-sm-12">
+                                        <span class="from-title">Insurance Fee:</span>
+                                    </div>
+                                    <div class="col-lg-8 col-sm-12 flex-end">
+                                        <span class="from-title">$ {{insurancePrice}}</span>
+                                    </div>
+
+                                    <br>
+                                    <br>
+                                    
                                     <div class="col-lg-12 col-sm-12">
                                         <span class="from-title">Personal Information:</span>
                                     </div>
@@ -41,19 +61,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- <div class="col-lg-6 col-sm-6">
-                                        <div class="form-group">
-                                            <select class="form-control" formControlName="aims">
-                                                <option value="">Please Select Aims</option>
-                                                <option value="Business">Business</option>
-                                                <option value="None Business">None Business</option>
-                                            </select>
-                                            <span class="text-danger"
-                                            *ngIf="(carInsuranceFormControl.aims.touched || submitted) && carInsuranceFormControl.aims.errors?.required">
-                                            Please select Aims
-                                            </span>
-                                        </div>
-                                    </div> -->
 
             
                                     <div class="col-lg-6 col-sm-6">
@@ -71,9 +78,9 @@
             
                                     <div class="col-lg-6 col-sm-6">
                                         <div class="form-group">
-                                            <select class="form-control" formControlName="carMaker">
+                                            <select class="form-control" formControlName="carMaker" (change)="onChangeCarMaker($event)">
                                                 <option value="">Please Select Car Maker</option>
-                                                <option value="{{item}}" *ngFor="let item of carMaker">{{item}}</option>
+                                                <option value="{{item.price}}" *ngFor="let item of carMaker">{{item.title}}</option>
                                             </select>
                                             <span class="text-danger"
                                             *ngIf="(carInsuranceFormControl.carMaker.touched || submitted) && carInsuranceFormControl.carMaker.errors?.required">

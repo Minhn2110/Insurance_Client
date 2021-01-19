@@ -23,6 +23,7 @@ import { RegisterPageComponent } from './components/pages/authentication/registe
 import { PurchasePageComponent } from './components/pages/purchase-page/purchase-page.component';
 import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
 import { ClaimFormComponent } from './components/pages/claim-form/claim-form.component';
+import { ClaimListComponent } from './components/pages/claim-list/claim-list.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,8 @@ const routes: Routes = [
     {path: 'purchase', component: PurchasePageComponent},
     {path: 'payment', component: PaymentPageComponent},
     {path: 'claim-form', component: ClaimFormComponent},
+    {path: 'claim-list', component: ClaimListComponent},
+
 
     // Here add new pages component
 

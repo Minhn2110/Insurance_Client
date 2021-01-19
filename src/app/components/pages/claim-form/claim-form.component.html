@@ -130,10 +130,15 @@
                 <div class="contact-info claim-form-totalFee">
                     <h3>Total Fee</h3>
 
-                    <div class="row">
-                        <div class="col-8">Maximum Compensation: </div>
-                        <div class="col-4">5000$</div>
-                    </div>
+                    <ng-container *ngFor="let item of productInfo">
+                        <div class="row">
+                            <div class="col-8">{{item.title}} </div>
+                            <div class="col-4">{{item.value}} $</div>
+                        </div>
+                    </ng-container> 
+                    
+
+
 
                     <div class="row">
                         <div class="col-8">Claim Times: </div>

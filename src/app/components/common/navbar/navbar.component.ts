@@ -25,7 +25,8 @@ export class NavbarComponent implements OnInit {
   menuItem: Array<any> = [
     {name: 'Home', router: '/'},
     {name: 'Insurance', router: '/purchase'},
-    {name: 'Claim', router: '/claims'},
+    {name: 'Claim', router: '/claims'}, 
+    {name: 'Claim List', router: '/claim-list'},
     {name: 'Claim Form', router: '/claim-form'},
     {name: 'FAQ', router: '/faq'}
   ]

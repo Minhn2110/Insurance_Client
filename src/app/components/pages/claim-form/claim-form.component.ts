@@ -40,6 +40,7 @@ export class ClaimFormComponent implements OnInit {
     { type: 'text', formControlName: 'employeeName', placeholder: 'Employee Name', error: 'Employee Name', hint: 'Employee Name' },
     { type: 'text', formControlName: 'employeePhoneNumber', placeholder: 'Employee Phone Number', error: 'Employee Phone Number', hint: 'Employee Phone Number' },
   ]
+  productInfo: Array<any> = [];
 
 
 
@@ -148,8 +149,12 @@ export class ClaimFormComponent implements OnInit {
   }
 
   getProduct() {
-    this.appService.getProduct('BHOT').subscribe((res) => {
+    this.appService.getProduct('BHOT').subscribe((res: any) => {
       console.log('res', res);
+       this.productInfo = [
+        {title: 'Maximum Compensation', class: '',  value: res.data.priceObj}
+      ]
+      console.log('res', this.productInfo);
     })
   }
 

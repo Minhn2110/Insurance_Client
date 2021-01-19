@@ -68,6 +68,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { counterReducer } from './components/store/store.reducer';
 import { ClaimFormComponent } from './components/pages/claim-form/claim-form.component';
+import { ClaimListComponent } from './components/pages/claim-list/claim-list.component';
 
 
 @NgModule({
@@ -123,7 +124,8 @@ import { ClaimFormComponent } from './components/pages/claim-form/claim-form.com
         RegisterPageComponent,
         PurchasePageComponent,
         PaymentPageComponent,
-        ClaimFormComponent
+        ClaimFormComponent,
+        ClaimListComponent
     ],
     imports: [
         BrowserModule,

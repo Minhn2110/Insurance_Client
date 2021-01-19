@@ -29,6 +29,9 @@ export class HometwoGetAQuoteComponent implements OnInit {
 
   product: any;
 
+  insurancePrice: Number;
+
+  carEstimation: Number;
 
   constructor(
     private fb: FormBuilder,
@@ -59,6 +62,8 @@ export class HometwoGetAQuoteComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.insurancePrice = 0;
+
     this.initCarInsuranceForm();
     console.log(CarList)
     this.carBrand = CarList.map(item => item.brand);
@@ -111,6 +116,12 @@ export class HometwoGetAQuoteComponent implements OnInit {
     // alert('a');
   }
 
+  onChangeCarMaker(event) {
+    console.log('event', event.target.value);
+    this.carEstimation = event.target.value;
+    this.insurancePrice = event.target.value * 0.02
+  }
+
 
 
   onSubmit() {
@@ -127,12 +138,11 @@ export class HometwoGetAQuoteComponent implements OnInit {
         phoneNumber: this.carInsuranceForm.controls.phoneNumber.value,
         address: this.carInsuranceForm.controls.address.value,
         // note: this.carInsuranceForm.controls.note.value,
-        price: 10000,
+        price: this.insurancePrice,
         processName: "BuyNew",
         customerId: this.userInfo.customerId,
         productId: this.product.data.id ,
         partnerId: 1
-
       }
       // console.log('body', body);
       // this.appService.getConfig(body).subscribe((res) => {
