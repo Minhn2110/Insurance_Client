@@ -42,6 +42,9 @@ export class ClaimFormComponent implements OnInit {
   ]
   productInfo: Array<any> = [];
 
+  // productInformation: Array<any> = [
+  //   {title: '', class: '', amount: ''}
+  // ]
 
 
   constructor(
@@ -146,13 +149,27 @@ export class ClaimFormComponent implements OnInit {
 
   onChangeDetailAmount(event) {
     console.log(event.target);
-  }
+  } 
 
   getProduct() {
     this.appService.getProduct('BHOT').subscribe((res: any) => {
       console.log('res', res);
        this.productInfo = [
-        {title: 'Maximum Compensation', class: '',  value: res.data.priceObj}
+        {title: 'Maximum Compensation:', class: '',  value: `${res.data.priceObj} $`},
+        {title: 'Remain Repain Times:', class: '', value: res.data.numberRepaint},
+        {title: 'Remain Bringing Times:', class: '', value: res.data.numberBringing},
+        {title: 'Remain Component Times:', class: '', value: res.data.numberComponent},
+        {title: 'Remain Rear View Mirror Times:', class: '', value: res.data.numberRearViewMirror},
+        {title: 'Remain Scratched Times:', class: '', value: res.data.numberScratched},
+
+        {title: '% Repaint Fee Covered by Revor:', class: '', value: `${res.data.repaintFee} %`},
+        {title: '% Bringing Fee Covered by Revor:', class: '', value: `${res.data.bringingFee} %`},
+        {title: '% Component Fee Covered by Revor:', class: '', value: `${res.data.componentFee} %`},
+        {title: '% Rear View Mirror Fee Covered by Revor:', class: '', value: `${res.data.rearViewMirror} %`},
+        {title: '% Scratched Fee Covered by Revor:', class: '', value: `${res.data.scratchedFee} %`},
+
+
+
       ]
       console.log('res', this.productInfo);
     })

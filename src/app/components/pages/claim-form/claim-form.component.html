@@ -18,7 +18,7 @@
         <div class="row">
 
 
-            <div class="col-lg-9 col-md-12">
+            <div class="col-lg-8 col-md-12">
                 <div class="contact-wrap">
                     <div class="contact-form">
                         <form id="contactForm" [formGroup]="claimForm" (ngSubmit)="onCreateClaimForm()">
@@ -126,29 +126,19 @@
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-12">
+            <div class="col-lg-4 col-md-12">
                 <div class="contact-info claim-form-totalFee">
-                    <h3>Total Fee</h3>
+                    <h3>Product Information</h3>
+                    <hr style="font-weight: bold;">
 
                     <ng-container *ngFor="let item of productInfo">
-                        <div class="row">
-                            <div class="col-8">{{item.title}} </div>
-                            <div class="col-4">{{item.value}} $</div>
+                        <div class="row productInfo--row">
+                            <div class="col-8 claim-form-totalFee--title">{{item.title}} </div>
+                            <div class="col-4">{{item.value}} </div>
                         </div>
                     </ng-container> 
                     
 
-
-
-                    <div class="row">
-                        <div class="col-8">Claim Times: </div>
-                        <div class="col-4">0</div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-8">Remain: </div>
-                        <div class="col-4">1000$</div>
-                    </div>
 
                     <div class="row">
                         <div class="col-8 claim-form-totalFee--title">Name: </div>

@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 
 
 // const environment = 'http://128.199.89.67/api/v1';
 const environment = 'https://www.genson.me/api/v1'; 
+
+const API_ClaimConfig = `${environment}/configs/claim`;
+
 
 @Injectable({
   providedIn: 'root'
@@ -73,4 +77,16 @@ export class AppService {
     const url = `${environment}/u/claims`;
     return this.http.post(url, body, httpOptions);
   }
+
+  getClaimConfig(id): Observable<any> {
+    const userToken = localStorage.getItem('token');
+    console.log('userToken', userToken);
+    const httpOptions = {
+        headers: new HttpHeaders({
+            Authorization: 'Bearer ' + userToken
+        })
+    };
+    return this.http.get<any>(`${API_ClaimConfig}/${id}`, httpOptions);
+  }
+  
 }

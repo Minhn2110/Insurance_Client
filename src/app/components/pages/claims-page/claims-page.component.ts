@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-claims-page',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClaimsPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private appService: AppService
+  ) { }
+
+  title: string;
+  bannerImg: string;
+  body: any;
+
 
   ngOnInit(): void {
+    this.appService.getClaimConfig(1).subscribe((res) => {
+      if (res) {
+        this.title = res.claimConfigFormHeader;
+        this.bannerImg = res.claimConfigFormBanner;
+        this.body = res.claimConfigFormBody;
+      }
+      console.log('res', res);
+    })
   }
 
 }
