@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-car-insurance-page',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarInsurancePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private appService: AppService
+  ) { }
+
+  headerContent: string;
+  bannerImg: string;
+  body: any;
+
 
   ngOnInit(): void {
+    this.appService.getCarConfig(1).subscribe((res) => {
+      if (res) {
+        this.headerContent = res.carConfigHeaderContent;
+        this.bannerImg = res.carConfigBannerFile;
+        this.body = res.carConfigBodyContent;
+      }
+      console.log('res', res);
+    })
   }
 
 }

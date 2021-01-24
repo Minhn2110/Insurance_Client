@@ -24,21 +24,32 @@ export class NavbarComponent implements OnInit {
   ] 
   menuItem: Array<any> = [
     {name: 'Home', router: '/'},
-    {name: 'Insurance', router: '/purchase'},
+    {name: 'Insurance', router: '/car-insurance'},
     {name: 'Claim', router: '/claims'}, 
     {name: 'Claim List', router: '/claim-list'},
     {name: 'Claim Form', router: '/claim-form'},
-    {name: 'FAQ', router: '/faq'}
   ]
  
 
   ngOnInit(): void {
+
+
+
     this.accountStatusSubscription = this.store.select(getAccountStatus).subscribe((status: boolean) => {
       this.accountStatus = status;
-      console.log('status', status);
-
     });
     this.isLoggedIn();
+    setTimeout(() => {
+      this.checkIfhasToken();
+    });
+  }
+
+  checkIfhasToken() {
+    const userToken = localStorage.getItem('token');
+    if (userToken) {
+      this.accountStatus = true;
+      this.store.dispatch(LOAD_USER_INFO({userInfo: JSON.parse(localStorage.getItem('userInfo'))}));
+    }
   }
 
   ngOnDestroy(): void {
@@ -59,7 +70,6 @@ export class NavbarComponent implements OnInit {
     this.store.dispatch(accountAction({accountStatus: false}));
     localStorage.removeItem("token");
     this.store.dispatch(LOAD_USER_INFO({userInfo: null}));
-    alert('a');
   }
 
 }

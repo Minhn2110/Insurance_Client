@@ -7,7 +7,6 @@ import { CarInsurancePageComponent } from './components/pages/car-insurance-page
 import { ClaimsPageComponent } from './components/pages/claims-page/claims-page.component';
 import { ComingSoonPageComponent } from './components/pages/coming-soon-page/coming-soon-page.component';
 import { ContactPageComponent } from './components/pages/contact-page/contact-page.component';
-import { FaqPageComponent } from './components/pages/faq-page/faq-page.component';
 import { HomeDemoOneComponent } from './components/pages/home-demo-one/home-demo-one.component';
 import { HomeDemoThreeComponent } from './components/pages/home-demo-three/home-demo-three.component';
 import { HomeDemoTwoComponent } from './components/pages/home-demo-two/home-demo-two.component';
@@ -36,7 +35,6 @@ const routes: Routes = [
     {path: 'blog-grid', component: BlogGridPageComponent},
     {path: 'blog-details', component: BlogDetailsPageComponent},
     {path: 'coming-soon', component: ComingSoonPageComponent},
-    {path: 'faq', component: FaqPageComponent},
     {path: 'pricing', component: PricingPageComponent},
     {path: 'claims', component: ClaimsPageComponent},
     {path: 'services', component: ServicesPageComponent},

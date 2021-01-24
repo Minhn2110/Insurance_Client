@@ -17,7 +17,6 @@ import { NotFoundComponent } from './components/pages/not-found/not-found.compon
 
 import { CarInsurancePageComponent } from './components/pages/car-insurance-page/car-insurance-page.component';
 import { ComingSoonPageComponent } from './components/pages/coming-soon-page/coming-soon-page.component';
-import { FaqPageComponent } from './components/pages/faq-page/faq-page.component';
 import { ClaimsPageComponent } from './components/pages/claims-page/claims-page.component';
 import { PricingPageComponent } from './components/pages/pricing-page/pricing-page.component';
 import { ServicesPageComponent } from './components/pages/services-page/services-page.component';
@@ -70,6 +69,8 @@ import { counterReducer } from './components/store/store.reducer';
 import { ClaimFormComponent } from './components/pages/claim-form/claim-form.component';
 import { ClaimListComponent } from './components/pages/claim-list/claim-list.component';
 
+import { MaterialModule } from './material.module';
+
 
 @NgModule({
     declarations: [
@@ -84,7 +85,6 @@ import { ClaimListComponent } from './components/pages/claim-list/claim-list.com
         NotFoundComponent,
         CarInsurancePageComponent,
         ComingSoonPageComponent,
-        FaqPageComponent,
         ClaimsPageComponent,
         PricingPageComponent,
         ServicesPageComponent,
@@ -143,6 +143,7 @@ import { ClaimListComponent } from './components/pages/claim-list/claim-list.com
         StoreDevtoolsModule.instrument({
             maxAge: 25, // Retains last 25 states
         }),
+        MaterialModule
         // StoreModule.forRoot();
     ],
     providers: [],

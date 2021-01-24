@@ -67,7 +67,7 @@
                                         <div class="form-group">
                                             <select class="form-control" (change)="onChangeCarBrand($event)" formControlName="carBrand">
                                                 <option value="">Please Select Car Brand</option>
-                                                <option value="{{item}}" *ngFor="let item of carBrand">{{item}}</option>
+                                                <option value="{{item.carBrandCode}}" *ngFor="let item of carBrand">{{item.carBrand}}</option>
                                             </select>
                                             <span class="text-danger"
                                             *ngIf="(carInsuranceFormControl.carBrand.touched || submitted) && carInsuranceFormControl.carBrand.errors?.required">
@@ -80,7 +80,7 @@
                                         <div class="form-group">
                                             <select class="form-control" formControlName="carMaker" (change)="onChangeCarMaker($event)">
                                                 <option value="">Please Select Car Maker</option>
-                                                <option value="{{item.price}}" *ngFor="let item of carMaker">{{item.title}}</option>
+                                                <option value="{{item.code}}" *ngFor="let item of carMaker">{{item.title}}</option>
                                             </select>
                                             <span class="text-danger"
                                             *ngIf="(carInsuranceFormControl.carMaker.touched || submitted) && carInsuranceFormControl.carMaker.errors?.required">

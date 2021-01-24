@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 const environment = 'https://www.genson.me/api/v1'; 
 
 const API_ClaimConfig = `${environment}/configs/claim`;
+const API_CarConfig = `${environment}/configs/car`;
+const API_Claim = `${environment}/claims`;
 
 
 @Injectable({
@@ -88,5 +90,42 @@ export class AppService {
     };
     return this.http.get<any>(`${API_ClaimConfig}/${id}`, httpOptions);
   }
+  getCarConfig(id): Observable<any> {
+    const userToken = localStorage.getItem('token');
+    console.log('userToken', userToken);
+    const httpOptions = {
+        headers: new HttpHeaders({
+            Authorization: 'Bearer ' + userToken
+        })
+    };
+    return this.http.get<any>(`${API_CarConfig}/1`, httpOptions);
+  }
+  getDynamicFee() {
+    const url = `${environment}/car-brand`;
+    return this.http.get(url); 
+   }
+
+   getContract(contractCode) {
+    const userToken = localStorage.getItem('token');
+    console.log('userToken', userToken);
+    const httpOptions = {
+        headers: new HttpHeaders({
+            Authorization: 'Bearer ' + userToken
+        })
+    };
+    const url = `${environment}/u/contract/claims-info/${contractCode}`;
+    return this.http.get(url, httpOptions); 
+   }
+
+   getClaimList(filter, page, size, sort): Observable<any> {
+    const userToken = localStorage.getItem('token');
+    console.log('userToken', userToken);
+    const httpOptions = {
+        headers: new HttpHeaders({
+            Authorization: 'Bearer ' + userToken
+        })
+    };
+    return this.http.get<any>(`${API_Claim}?page=${page}&size=${size}`, httpOptions);
+  }  
   
 }

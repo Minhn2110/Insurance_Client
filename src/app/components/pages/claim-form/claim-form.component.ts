@@ -15,7 +15,7 @@ export class ClaimFormComponent implements OnInit {
 
 
   claimFormInput: Array<any> = [
-    { type: 'text', formControlName: 'contractCode', placeholder: 'Contract Code', error: 'Contract Id', hint: 'Contract Code' },
+    // { type: 'text', formControlName: 'contractCode', placeholder: 'Contract Code', error: 'Contract Id', hint: 'Contract Code' },
     { type: 'text', formControlName: 'customerName', placeholder: 'Customer Name', error: 'Customer Name', hint: 'Customer Name' },
     { type: 'text', formControlName: 'carPlate', placeholder: 'Car Plate', error: 'Car Plate', hint: 'Car Plate' },
   ];
@@ -41,6 +41,8 @@ export class ClaimFormComponent implements OnInit {
     { type: 'text', formControlName: 'employeePhoneNumber', placeholder: 'Employee Phone Number', error: 'Employee Phone Number', hint: 'Employee Phone Number' },
   ]
   productInfo: Array<any> = [];
+  contractInfo: Array<any> = []; 
+
 
   // productInformation: Array<any> = [
   //   {title: '', class: '', amount: ''}
@@ -172,6 +174,24 @@ export class ClaimFormComponent implements OnInit {
 
       ]
       console.log('res', this.productInfo);
+    })
+  }
+
+  getContract(event) {
+    console.log('change', event.target.value);
+    this.appService.getContract(event.target.value).subscribe((res: any) => {
+      console.log('contract', res);
+      if (res) {
+        this.contractInfo = [
+          {title: 'Remain Compensation:', class: '',  value: `${res.maximumCompensation} $`},
+          {title: 'Remain Repain Times:', class: '', value: res.numberRepaint},
+          {title: 'Remain Bringing Times:', class: '', value: res.numberBringing},
+          {title: 'Remain Component Times:', class: '', value: res.numberComponent},
+          {title: 'Remain Rear View Mirror Times:', class: '', value: res.numberRearViewMirror},
+          {title: 'Remain Scratched Times:', class: '', value: res.numberScratched},
+  
+        ]
+      }
     })
   }
 

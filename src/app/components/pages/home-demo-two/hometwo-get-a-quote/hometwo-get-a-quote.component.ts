@@ -31,7 +31,7 @@ export class HometwoGetAQuoteComponent implements OnInit {
 
   insurancePrice: Number;
 
-  carEstimation: Number;
+  carEstimation: any;
 
   constructor(
     private fb: FormBuilder,
@@ -65,12 +65,11 @@ export class HometwoGetAQuoteComponent implements OnInit {
     this.insurancePrice = 0;
 
     this.initCarInsuranceForm();
-    console.log(CarList)
-    this.carBrand = CarList.map(item => item.brand);
-    console.log(this.carBrand);
+
 
     this.getProduct();
     this.getUserInfo();
+    this.getDynamicCarFee();
   }
 
   getUserInfo(): void {
@@ -105,10 +104,13 @@ export class HometwoGetAQuoteComponent implements OnInit {
   }
   onChangeCarBrand(event) {
     console.log('event', event.target.value);
+    this.getCarBrandName(event.target.value);
     this.carMaker = [];
-    CarList.forEach(element => {
-      if(element.brand === event.target.value) {
-        this.carMaker = element.models;
+    this.carBrand.forEach(element => {
+      if(element.carBrandCode == event.target.value) {
+
+        console.log(element.models);
+        this.carMaker = JSON.parse(element.models);
       }
     });
     console.log(this.carMaker);
@@ -118,14 +120,25 @@ export class HometwoGetAQuoteComponent implements OnInit {
 
   onChangeCarMaker(event) {
     console.log('event', event.target.value);
-    this.carEstimation = event.target.value;
-    this.insurancePrice = event.target.value * 0.02
+    this.getCarModelTitle(event.target.value);
+
+    const name = this.carBrand.filter(item => item.carBrandCode === this.carInsuranceForm.controls.carBrand.value);
+    const modelArrays = JSON.parse(name[0].models); 
+    if (modelArrays && modelArrays.length > 0) {
+      const itemArray = modelArrays.filter(item => item.code === event.target.value);
+      this.carEstimation = itemArray[0].price;
+      this.insurancePrice = parseInt(this.carEstimation) * 0.02
+    }
+
+
+
   }
 
 
 
   onSubmit() {
     this.submitted = true;
+    const controls = this.carInsuranceForm.controls;
     if (this.carInsuranceForm.valid) {
       const body: any = {
         name: this.carInsuranceForm.controls.name.value,
@@ -134,6 +147,10 @@ export class HometwoGetAQuoteComponent implements OnInit {
         // aims: this.carInsuranceForm.controls.aims.value,
         carBrand: this.carInsuranceForm.controls.carBrand.value,
         carMaker: this.carInsuranceForm.controls.carMaker.value,
+        carBrandName: this.getCarBrandName(controls['carBrand'].value),
+        carBrandCode: controls['carBrand'].value,
+        carModelTitle: '',
+        carModelCode: '',
         email: this.carInsuranceForm.controls.email.value,
         phoneNumber: this.carInsuranceForm.controls.phoneNumber.value,
         address: this.carInsuranceForm.controls.address.value,
@@ -152,6 +169,37 @@ export class HometwoGetAQuoteComponent implements OnInit {
       this.router.navigate(['/payment']);
     }
 
+  }
+
+  getCarBrandName(value) {
+    const name = this.carBrand.filter(item => item.carBrandCode === value);
+    console.log('name', name[0].carBrand);
+    return name[0].carBrand;
+  }
+  getCarModelTitle(value) {
+
+    const name = this.carBrand.filter(item => item.carBrandCode === this.carInsuranceForm.controls.carBrand.value);
+    const modelArrays = JSON.parse(name[0].models);  
+    let title = '';
+    if (modelArrays && modelArrays.length > 0) {
+      const itemArray = modelArrays.filter(item => item.code === value);
+      title = itemArray[0].title;
+      console.log('title', title);
+      return title;
+    }
+    console.log('title', title);
+    return title;
+  }
+
+
+  getDynamicCarFee() {
+    this.service.getDynamicFee().subscribe((res: Array<any>) => {
+      console.log('dynamic fee', res);
+      if (res && res.length > 0) {
+        this.carBrand = res;
+        console.log('aray', this.carBrand);
+      }
+    })
   }
 
 }

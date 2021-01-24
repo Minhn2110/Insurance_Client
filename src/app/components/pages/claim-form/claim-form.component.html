@@ -27,6 +27,13 @@
                                     <h3>Personal Information</h3>
 
                                 </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" name="name" id="name" class="form-control"
+                                            (change)="getContract($event)" placeholder="Contract Code"
+                                            formControlName="contractCode">
+                                    </div>
+                                </div>
                                 <div class="col-lg-6 col-sm-6" *ngFor="let item of claimFormInput">
                                     <div class="form-group">
                                         <input type="text" name="name" id="name" class="form-control"
@@ -46,7 +53,9 @@
 
                                 <ng-container *ngFor="let item of coverageCheckbox">
                                     <div class="col-lg-1 col-sm-6 coverage-cbx">
-                                        <input type="checkbox" class="form-control" (change)="onChangeCoverageCbx($event)" id={{item.formControlName}} formControlName="{{item.formControlName}}">
+                                        <input type="checkbox" class="form-control"
+                                            (change)="onChangeCoverageCbx($event)" id={{item.formControlName}}
+                                            formControlName="{{item.formControlName}}">
                                     </div>
                                     <div class="col-lg-2 col-sm-6 coverage-cbx">
                                         <label>{{item.label}}</label>
@@ -64,17 +73,18 @@
                                     <div class="col-lg-6 col-sm-6">
                                         <div class="form-group">
                                             <input type="number" id="{{item.formControlName}}" class="form-control"
-                                                placeholder="{{item.label}}" formControlName="{{item.formControlName}}" (change)="onChangeDetailAmount($event)">
+                                                placeholder="{{item.label}}" formControlName="{{item.formControlName}}"
+                                                (change)="onChangeDetailAmount($event)">
                                         </div>
                                     </div>
-    
-                                    
+
+
                                     <div class="col-lg-6 col-sm-6">
                                         <p>Note: {{item.description}}</p>
                                     </div>
 
                                 </ng-container>
-                                
+
 
 
 
@@ -116,7 +126,7 @@
                                 </div>
 
                                 <div class="col-lg-12 col-md-12">
-                                    <button type="submit" class="default-btn"><span>Get Fee</span></button> 
+                                    <button type="submit" class="default-btn"><span>Get Fee</span></button>
                                 </div>
                             </div>
 
@@ -133,11 +143,11 @@
 
                     <ng-container *ngFor="let item of productInfo">
                         <div class="row productInfo--row">
-                            <div class="col-8 claim-form-totalFee--title">{{item.title}} </div>
+                            <div class="col-8">{{item.title}} </div>
                             <div class="col-4">{{item.value}} </div>
                         </div>
-                    </ng-container> 
-                    
+                    </ng-container>
+
 
 
                     <div class="row">
@@ -152,10 +162,30 @@
                     </div>
 
                     <br>
-                    <button type="submit" class="default-btn"><span>Submit</span></button> 
-                    
+                    <button type="submit" class="default-btn"><span>Submit</span></button>
+
+                </div>
+
+                <br>
+                <br>
+
+                <div class="contact-info claim-form-totalFee">
+                    <h3>Contract Information</h3>
+                    <hr style="font-weight: bold;">
+
+                    <ng-container *ngFor="let item of contractInfo">
+                        <div class="row productInfo--row">
+                            <div class="col-8 claim-form-totalFee--title">{{item.title}} </div>
+                            <div class="col-4">{{item.value}} </div>
+                        </div>
+                    </ng-container>
+
+
+
                 </div>
             </div>
+
+
         </div>
     </div>
 </section>

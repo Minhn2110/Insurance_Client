@@ -51,6 +51,7 @@ export class LoginPageComponent implements OnInit {
         if (res) {
           console.log('res', res);
           localStorage.setItem('token', res.accessToken);
+          localStorage.setItem('userInfo', JSON.stringify(res.infor));
           this.store.dispatch(LOAD_USER_INFO({userInfo: res.infor}));
           this.store.dispatch(accountAction({accountStatus: true}));
           this.appService.successMsg('Log in success', 'Success');
