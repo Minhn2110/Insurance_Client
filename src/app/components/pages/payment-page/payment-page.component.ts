@@ -4,8 +4,12 @@ import { Store } from '@ngrx/store';
 import { AppService } from 'src/app/app.service';
 
 import {selectUser, selectTotal} from '../../store/store.selector';
+import { LOAD_ORDER_INFO } from '../../store/store.action';
+
 
 declare var paypal;
+import jspdf from 'jspdf'; 
+
 
 @Component({
   selector: 'app-payment-page',
@@ -24,13 +28,15 @@ export class PaymentPageComponent implements OnInit {
   orderInfo: any;
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
 
-
+fakeRes = {"name":"Minh","numberPlate":"29E182819","carMaker":"VICSA2019","email":"minhn211096@gmail.com","phoneNumber":"0383860666","address":"91 Nguiyen Chi Thanh","price":2000.0,"processName":"BuyNew","productId":1,"customerId":1,"carBrandCode":"VIC","carBrandName":"Vinfast","carModelCode":"VICSA2019","carModelTitle":"Lux SA2.0 2019","contractCode":"BHOT62482179939"}
   ngOnInit() {
     this.store.select(selectTotal).subscribe(data => {
       this.orderInfo = data;
       console.log('orderInfo', this.orderInfo);
     });
     this.integratePaypal();
+    this.store.dispatch(LOAD_ORDER_INFO({orderInfo: this.fakeRes}));
+
   }
 
   integratePaypal(): void {
@@ -66,11 +72,14 @@ export class PaymentPageComponent implements OnInit {
   createOrder(data) {
     this.service.createOrder(data).subscribe((res: any) => {
       console.log('res', res);
-      if(res && res.status) {
+      if(res) {
+        this.store.dispatch(LOAD_ORDER_INFO({orderInfo: res}));
         this.service.successMsg('Purchase success', 'Success');
-        this.router.navigate(['/']);
+        this.router.navigate(['/certificate']);
       }
     })
   }
+
+
 
 }

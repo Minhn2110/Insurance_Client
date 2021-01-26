@@ -68,6 +68,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { counterReducer } from './components/store/store.reducer';
 import { ClaimFormComponent } from './components/pages/claim-form/claim-form.component';
 import { ClaimListComponent } from './components/pages/claim-list/claim-list.component';
+import { CertificatePageComponent }from './components/pages/certificate-page/certificate-page.component'
 
 import { MaterialModule } from './material.module';
 
@@ -125,7 +126,8 @@ import { MaterialModule } from './material.module';
         PurchasePageComponent,
         PaymentPageComponent,
         ClaimFormComponent,
-        ClaimListComponent
+        ClaimListComponent,
+        CertificatePageComponent
     ],
     imports: [
         BrowserModule,

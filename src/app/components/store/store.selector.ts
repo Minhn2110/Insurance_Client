@@ -23,3 +23,8 @@ export const selectUserInfo = createSelector(
   selectUser,
   (state: any) => state.userInfo
 );
+
+export const selectOrderInfo = createSelector(
+  selectUser,
+  (state: any) => state.orderInfo
+);

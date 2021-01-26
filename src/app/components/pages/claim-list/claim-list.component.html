@@ -1,14 +1,14 @@
 <!-- Start Page Title Area -->
-<div class="page-title-area bg-14">
-    <div class="container">
-        <div class="page-title-content">
-            <h2>Blog Grid</h2>
-            <ul>
-                <li><a routerLink="/">Home </a></li>
-                <li class="active">Blog Grid</li>
-            </ul>
-        </div>
-    </div>
+<div class="page-title-area bg-7">
+  <div class="container">
+      <div class="page-title-content">
+          <h2>Claims List</h2>
+          <ul>
+              <li><a routerLink="/">Home</a></li>
+              <li class="active">Claims List</li>
+          </ul>
+      </div>
+  </div>
 </div>
 <!-- End Page Title Area -->
 
@@ -21,32 +21,17 @@
                   matSortDirection="asc" matSortDisableClear>
           
                   <ng-container *ngFor="let item of displayedColumnsBinding" matColumnDef="{{item.matColumnDef}}">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{item.header}}</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef>{{item.header}}</mat-header-cell>
                     <mat-cell *matCellDef="let user">{{user[item.matColumnDef]}}</mat-cell>
                   </ng-container>
         
                   <ng-container matColumnDef="status">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
                     <mat-cell *matCellDef="let user">
                       <span class="kt-badge kt-badge--inline kt-badge--pill kt-badge--{{ getItemCssClassByStatus(user.status) }} kt-badge--wide">{{ user.status === 'Pending' ? 'Pending' : 'Approved' }}</span>
                     </mat-cell>
                   </ng-container>
-          
-                  <ng-container matColumnDef="actions">
-                    <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
-                    <mat-cell *matCellDef="let customer">
-          
-                      <button mat-icon-button color="warn" matTooltip="Delete customer" type="button"
-                        (click)="deleteCustomer(customer)">
-                        <mat-icon>delete</mat-icon>
-                      </button>&nbsp;
         
-                      <button (click)="editClaim(customer.id)" mat-icon-button color="primary" matTooltip="Edit user">
-                        <mat-icon>create</mat-icon>
-                      </button>&nbsp;
-          
-                    </mat-cell>
-                  </ng-container>
           
           
                   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -58,18 +43,10 @@
           
               <div class="mat-table__bottom">
                 <mat-spinner [diameter]="20" *ngIf="loading$"></mat-spinner>
-                <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" [length]="length" [showFirstLastButtons]="true">
+                <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" [length]="length" [showFirstLastButtons]="true"  (page)="onPaginate($event)">
                 </mat-paginator>
               </div>
-            <!-- <div class="col-lg-12 col-md-12">
-                <div class="pagination-area">
-                    <a routerLink="/blog-grid" class="prev page-numbers"><i class="bx bx-chevron-left"></i></a>
-                    <span class="page-numbers current" aria-current="page">1</span>
-                    <a routerLink="/blog-grid" class="page-numbers">2</a>
-                    <a routerLink="/blog-grid" class="page-numbers">3</a>
-                    <a routerLink="/blog-grid" class="next page-numbers"><i class="bx bx-chevron-right"></i></a>
-                </div>
-            </div> -->
+
         </div>
     </div>
 </section>

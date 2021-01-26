@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "node_modules/bootstrap/scss/bootstrap.scss",
               "node_modules/jquery-nice-select/scss/nice-select.scss",
               "node_modules/magnific-popup/dist/magnific-popup.css",
@@ -50,9 +51,9 @@
               "src/assets/js/appear.min.js",
               "src/assets/js/odometer.min.js",
               "src/assets/js/meanmenu.min.js",
-              "src/assets/js/parallax.min.js",
+              "src/assets/js/parallax.min.js", 
               "node_modules/wowjs/dist/wow.js",
-              "src/assets/js/custom.js"
+              "src/assets/js/custom.js",
             ]
           },
           "configurations": {
@@ -115,6 +116,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []

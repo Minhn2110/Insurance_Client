@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { getAccountStatus } from '../../store/store.selector';
+import { getAccountStatus, selectUserInfo } from '../../store/store.selector';
 import { accountAction, LOAD_USER_INFO } from '../../store/store.action';
 
 @Component({
@@ -16,7 +16,9 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   accountStatusSubscription: Subscription;
+  selecUserInfoSubscription: Subscription;
   accountStatus: boolean;
+  isClient: boolean = true;
 
   menuItemOthers: Array<any> = [
     {name: 'About Us', router: '/about-us'},
@@ -26,18 +28,25 @@ export class NavbarComponent implements OnInit {
     {name: 'Home', router: '/'},
     {name: 'Insurance', router: '/car-insurance'},
     {name: 'Claim', router: '/claims'}, 
-    {name: 'Claim List', router: '/claim-list'},
-    {name: 'Claim Form', router: '/claim-form'},
+    {name: 'Claim List', router: '/claim-list'}, 
+    // {name: 'Claim Form', router: '/claim-form'},
+    // {name: 'Certificate', router: '/certificate'},
   ]
  
 
   ngOnInit(): void {
-
-
-
     this.accountStatusSubscription = this.store.select(getAccountStatus).subscribe((status: boolean) => {
       this.accountStatus = status;
     });
+    // Need to debiug this
+    this.store.select(selectUserInfo).subscribe((userInfo: any) => {
+      console.log('user', userInfo);
+
+      if (userInfo) {
+        console.log('user', userInfo);
+        this.isClient = userInfo.role.name === 'PARTNER' ? false : true;
+      }
+    })
     this.isLoggedIn();
     setTimeout(() => {
       this.checkIfhasToken();
@@ -48,6 +57,7 @@ export class NavbarComponent implements OnInit {
     const userToken = localStorage.getItem('token');
     if (userToken) {
       this.accountStatus = true;
+      this.store.dispatch(accountAction({accountStatus: true}));
       this.store.dispatch(LOAD_USER_INFO({userInfo: JSON.parse(localStorage.getItem('userInfo'))}));
     }
   }

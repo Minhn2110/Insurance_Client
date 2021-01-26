@@ -18,8 +18,7 @@ export class ClaimListComponent implements OnInit {
     public dialog: MatDialog,
     ) { }
 
-  dataSource: MatTableDataSource<any>;
-  displayedColumns = ['id', 'name', 'numberPlate', 'partnerCode', 'partnerName', 'status', 'actions'];
+  displayedColumns = ['id', 'name', 'numberPlate', 'partnerCode', 'partnerName', 'status'];
 
   displayedColumnsBinding = [
     { matColumnDef: 'id', header: 'Id' },
@@ -33,18 +32,27 @@ export class ClaimListComponent implements OnInit {
 
   length: number;
   loading$:boolean;
+  pageIndex: any; 
+  pageSize:any;
+  dataSource = new MatTableDataSource();
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {read: true, static: false}) paginator: MatPaginator;
   ngOnInit() {
-    this.loading$ = true;
-    this.appService.getClaimList('', 1, 5, 'desc').subscribe((res) => {
+    this.pageIndex = 1;
+    this.pageSize = 5;
+    this.getData();
+    this.dataSource.paginator = this.paginator;
+  }
+
+  getData() {
+    this.appService.getClaimList('', this.pageIndex, this.pageSize, 'desc').subscribe((res) => {
       console.log('res', res);
       if (res && res.data.length > 0 ) {
         const data = res.data;
         this.dataSource = new MatTableDataSource(res.data);
         console.log('this datasoource', this.dataSource);
         this.dataSource.paginator = this.paginator;
-        this.length = res.data.length;
+        this.length = res.totalItems;
         this.loading$ = false;
       } 
     })
@@ -65,32 +73,10 @@ export class ClaimListComponent implements OnInit {
     // this.openDialog(id)
   }
 
-  // openDialog(id ?: any): void {
-  //   console.log('code', id);
-  //   if (id) {
-  //       console.log('id', id);
-  //       const dialogRef = this.dialog.open(ClaimInfoComponent, {
-  //         data: {
-  //           id: id
-  //         }
-  //       });
-    
-  //       dialogRef.afterClosed().subscribe(result => {
-  //         console.log('The dialog was closed', result);
-
-  //       });
-  //   } else {
-  //     const dialogRef = this.dialog.open(ClaimInfoComponent,
-  //       {
-  //         data: {
-  //           code: null
-  //         }
-  //       });
-
-  //     dialogRef.afterClosed().subscribe(result => {
-  //       console.log('The dialog was closed', result);
-  //     });
-  //   }
-
-  // }
+  onPaginate(event) {
+    this.pageIndex = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+    this.getData();
+    console.log(event);
+  }
 }

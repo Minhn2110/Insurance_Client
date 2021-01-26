@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppService } from 'src/app/app.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-claim-form',
@@ -29,11 +30,11 @@ export class ClaimFormComponent implements OnInit {
   ]
 
   coverageAmount: Array<any> = [
-    { formControlName: 'rePaintAmount', label: 'Re Paint Amount', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.' },
-    { formControlName: 'bringingFeeAmount', label: 'Bringing Fee Amount', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'  },
-    { formControlName: 'componentFeeAmount', label: 'Component Fee Amount', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'  },
-    { formControlName: 'rearViewMirrorAmount', label: 'rearViewMirrorAmount Fee Amount', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'  },
-    { formControlName: 'scratchedFeeAmount', label: 'Scratched Fee Amount', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'  },
+    { formControlName: 'rePaintAmount', label: 'Re Paint Amount', description: 'Insurance companies pay only a portion of the premium' },
+    { formControlName: 'bringingFeeAmount', label: 'Bringing Fee Amount', description: 'Insurance companies pay only a portion of the premium'  },
+    { formControlName: 'componentFeeAmount', label: 'Component Fee Amount', description: 'Insurance companies pay only a portion of the premium'  },
+    { formControlName: 'rearViewMirrorAmount', label: 'rearViewMirrorAmount Fee Amount', description: 'Insurance companies pay only a portion of the premium'  },
+    { formControlName: 'scratchedFeeAmount', label: 'Scratched Fee Amount', description: 'Insurance companies pay only a portion of the premium'  },
   ]
 
   garageInformation: Array<any> = [
@@ -59,6 +60,7 @@ export class ClaimFormComponent implements OnInit {
   ngOnInit(): void {
     this.createClaimForm();
     this.getProduct();
+
   }
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -108,19 +110,19 @@ export class ClaimFormComponent implements OnInit {
         numberPlate: this.claimForm.controls.carPlate.value,
         name:  this.claimForm.controls.customerName.value,
         //Insurance
-        repaintFee: this.claimForm.controls.rePaint.value,
+        repaintFee: this.claimForm.controls.rePaint.value ? this.claimForm.controls.rePaint.value : false ,
         repaintFeeAmount: this.claimForm.controls.rePaintAmount.value,
-        bringingFee: this.claimForm.controls.bringingFee.value,
+        bringingFee: this.claimForm.controls.bringingFee.value ? this.claimForm.controls.bringingFee.value : false ,
         bringingFeeAmount: this.claimForm.controls.bringingFeeAmount.value,
-        rearViewMirror: this.claimForm.controls.rearViewMirror.value,
+        rearViewMirror: this.claimForm.controls.rearViewMirror.value ?  this.claimForm.controls.rearViewMirror.value : false,
         rearViewMirrorAmount: this.claimForm.controls.rearViewMirrorAmount.value,
-        componentFee: this.claimForm.controls.rearViewMirror.value,
+        componentFee: this.claimForm.controls.rearViewMirror.value ? this.claimForm.controls.rearViewMirror.value : false,
         componentFeeAmount: this.claimForm.controls.rearViewMirrorAmount.value,
-        scratchedFee: this.claimForm.controls.scratchedFee.value,
+        scratchedFee: this.claimForm.controls.scratchedFee.value ? this.claimForm.controls.scratchedFee.value : false,
         scratchedFeeAmount: this.claimForm.controls.scratchedFeeAmount.value,
         partnerId: 1,
-        employeeName: "nghia",
-        employeePhoneNumber: "1",
+        employeeName: this.claimForm.controls.employeeName.value,
+        employeePhoneNumber: this.claimForm.controls.employeePhoneNumber.value,
         note: "not have note"
       }
       console.log('body', body);
@@ -129,11 +131,14 @@ export class ClaimFormComponent implements OnInit {
 
       this.appService.createClaim(body).subscribe((res: any) => {
         if (res) {
-          this.appService.successMsg(res.amount, 'Success');
+          const msg = `Your total compensation is ${res.amount}. Thank you for choosing Revor.`
+          Swal.fire(msg, '', 'success');
+          // this.appService.successMsg(res.amount, 'Success');
+          this.claimForm.reset();
         }
       }, error => {
         console.log(error);
-        this.appService.errorMsg(error.error.errors[0], 'Error');
+        this.appService.errorMsg('Not eligible for claim, youo have reached maximum times for claim', 'Error');
       });
     }
   }
@@ -158,11 +163,11 @@ export class ClaimFormComponent implements OnInit {
       console.log('res', res);
        this.productInfo = [
         {title: 'Maximum Compensation:', class: '',  value: `${res.data.priceObj} $`},
-        {title: 'Remain Repain Times:', class: '', value: res.data.numberRepaint},
-        {title: 'Remain Bringing Times:', class: '', value: res.data.numberBringing},
-        {title: 'Remain Component Times:', class: '', value: res.data.numberComponent},
-        {title: 'Remain Rear View Mirror Times:', class: '', value: res.data.numberRearViewMirror},
-        {title: 'Remain Scratched Times:', class: '', value: res.data.numberScratched},
+        {title: 'Maximum Repain Times:', class: '', value: res.data.numberRepaint},
+        {title: 'Maximum Bringing Times:', class: '', value: res.data.numberBringing},
+        {title: 'Maximum Component Times:', class: '', value: res.data.numberComponent},
+        {title: 'Maximum Rear View Mirror Times:', class: '', value: res.data.numberRearViewMirror},
+        {title: 'Maximum Scratched Times:', class: '', value: res.data.numberScratched},
 
         {title: '% Repaint Fee Covered by Revor:', class: '', value: `${res.data.repaintFee} %`},
         {title: '% Bringing Fee Covered by Revor:', class: '', value: `${res.data.bringingFee} %`},
@@ -183,7 +188,7 @@ export class ClaimFormComponent implements OnInit {
       console.log('contract', res);
       if (res) {
         this.contractInfo = [
-          {title: 'Remain Compensation:', class: '',  value: `${res.maximumCompensation} $`},
+          // {title: 'Remain Compensation:', class: '',  value: `${res.maximumCompensation} $`},
           {title: 'Remain Repain Times:', class: '', value: res.numberRepaint},
           {title: 'Remain Bringing Times:', class: '', value: res.numberBringing},
           {title: 'Remain Component Times:', class: '', value: res.numberComponent},

@@ -1,16 +1,19 @@
 import { createReducer, on } from '@ngrx/store';
-import { login, accountAction, LOAD_USER_INFO } from './store.action';
+import { login, accountAction, LOAD_USER_INFO, LOAD_ORDER_INFO } from './store.action';
 
 export interface State {
   purchaseForm: Object;
   accountStatus: Boolean;
   userInfo: Object;
+  orderInfo: Object;
+
 }
 
 export const initialState: State = {
   purchaseForm: {},
   accountStatus: false,
-  userInfo: {}
+  userInfo: {},
+  orderInfo: {}
 };
 const _counterReducer = createReducer(
   initialState,
@@ -20,6 +23,8 @@ const _counterReducer = createReducer(
     { ...state, accountStatus: accountStatus })),
   on(LOAD_USER_INFO, (state, { userInfo }) => (
     { ...state, userInfo: userInfo })),
+  on(LOAD_ORDER_INFO, (state, { orderInfo }) => (
+    { ...state, orderInfo: orderInfo })),
 );
 
 export function counterReducer(state, action) {

@@ -23,6 +23,7 @@ import { PurchasePageComponent } from './components/pages/purchase-page/purchase
 import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
 import { ClaimFormComponent } from './components/pages/claim-form/claim-form.component';
 import { ClaimListComponent } from './components/pages/claim-list/claim-list.component';
+import { CertificatePageComponent } from './components/pages/certificate-page/certificate-page.component';
 
 
 const routes: Routes = [
@@ -48,11 +49,13 @@ const routes: Routes = [
     {path: 'payment', component: PaymentPageComponent},
     {path: 'claim-form', component: ClaimFormComponent},
     {path: 'claim-list', component: ClaimListComponent},
+    {path: 'certificate', component: CertificatePageComponent}, // This line will remain down from the whole pages component list
 
 
     // Here add new pages component
 
     {path: '**', component: NotFoundComponent} // This line will remain down from the whole pages component list
+
 ];
 
 @NgModule({

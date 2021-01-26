@@ -104,7 +104,6 @@ export class HometwoGetAQuoteComponent implements OnInit {
   }
   onChangeCarBrand(event) {
     console.log('event', event.target.value);
-    this.getCarBrandName(event.target.value);
     this.carMaker = [];
     this.carBrand.forEach(element => {
       if(element.carBrandCode == event.target.value) {
@@ -149,8 +148,8 @@ export class HometwoGetAQuoteComponent implements OnInit {
         carMaker: this.carInsuranceForm.controls.carMaker.value,
         carBrandName: this.getCarBrandName(controls['carBrand'].value),
         carBrandCode: controls['carBrand'].value,
-        carModelTitle: '',
-        carModelCode: '',
+        carModelTitle: this.getCarModelTitle(controls['carMaker'].value),
+        carModelCode: controls['carMaker'].value,
         email: this.carInsuranceForm.controls.email.value,
         phoneNumber: this.carInsuranceForm.controls.phoneNumber.value,
         address: this.carInsuranceForm.controls.address.value,
